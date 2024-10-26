@@ -23,7 +23,7 @@ The **Date Display App** is a simple web application that allows users to input 
 
 To install and run this project locally, follow these steps:
 
-1. **Clone the Repositoryc
+1. **Clone the Repository**
 
    Open your terminal and run the following command:
 
