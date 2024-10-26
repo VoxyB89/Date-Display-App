@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Full height of the viewport */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 89.8vh; /* Full height of the viewport */
+}
+
+.container {
+    max-width: 600px;
+    margin: 100px auto; /* Center horizontally and add 50px margin at the top */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+}
+
+.input-section {
+    margin-bottom: 20px; /* Space between input section and output sections */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input[type="date"] {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-container {
+ text-align: center; /* Center the buttons */
+    margin-bottom: 20px; /* Space between buttons and output sections */
+}
+
+button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px; /* Space between buttons */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Flexbox for output sections */
+.output-section {
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: space-between; /* Distribute space between sections */
+    flex-wrap: wrap; /* Allow wrapping if there isn't enough space */
+    margin-top: 50px; /* Space above the output sections */
+}
+
+.section {
+    flex: 1; /* Allow each section to grow */
+    margin: 10px; /* Space between sections */
+    padding: 15px;
+    border: 1px solid #ccc; /* Optional: adds a border around sections */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for sections */
+    min-width: 150px; /* Minimum width for each section */
+}
+
+h2 {
+    margin: 0 0 10px 0; /* Space between section title and output */
+}
+
+.output-display {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #bbb; /* Optional: adds a border around output */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #ffffff; /* White background for output */
+    min-height: 50px; /* Minimum height for output display */
+    white-space: pre-wrap; /* Maintain line breaks */
+}
+
+/* Download button container styles */
+.download-button-container {
+    text-align: center; /* Center the download buttons */
+    margin-top: 20px; /* Space above the download buttons */
+}
+
+.download-button-container button {
+    padding: 10px;
+    background-color: #28a745; /* Green color for download buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px; /* Space between buttons */
+}
+
+.download-button-container button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+footer {
+    background-color: #007BFF; /* Change to your desired background color */
+    color: white; /* Text color */
+    padding: 20px 0; /* Padding around the footer */
+    text-align: center; /* Center the text */
+}
+
+.footer-container {
+    max-width: 50px auto; /* Limit the width */
+    margin: auto; /* Center the footer */
+}
+
+.footer-links {
+    list-style: none; /* Remove bullet points */
+    padding: 5	px; /* Remove default padding */
+}
+
+.footer-links li {
+    display: inline; /* Display links inline */
+    margin: 0 16px; /* Space between links */
+}
+
+.footer-links a {
+    color: white; /* Link color */
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: red;
+    font-weight: normal;
+}
