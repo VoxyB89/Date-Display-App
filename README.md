@@ -13,7 +13,7 @@ The **Date Display App** is a simple web application that allows users to input 
 - Download the displayed results as text files.
 - Responsive design for better usability on different devices.
 
-## Technologies Used
+## Launguages Used
 
 - HTML
 - CSS
