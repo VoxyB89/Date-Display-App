@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Time Until a Date | Made With ❤️ From Stellar Developer (Adrix)</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3796084952229783" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Date Display App | Countdown Days, Months, Years</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body>
-    <div class="wrapper">
-        <div class="container">
-            <!-- Input Section -->
-            <div class="input-section">
-                <h1>Display Days, Months, and Years Until a Specific Date</h1>
-                <input type="date" id="endDate" />
-                <div class="button-container">
-                    <button id="showFullDateBtn">Show Full Date</button>
-                    <button id="showDaysBtn">Show Days</button>
-                    <button id="showMonthsBtn">Show Months</button>
-                    <button id="showYearsBtn">Show Years</button>
-                </div>
-                <div class="download-button-container">
-                    <button id="downloadFullDateBtn">Download Full Date</button>
-                    <button id="downloadDaysBtn">Download Days</button>
-                    <button id="downloadMonthsBtn">Download Months</button>
-                    <button id="downloadYearsBtn">Download Years</button>
-                </div>
-            </div> 
+<body data-theme="light">
+  <header>
+    <h1>Date Display App</h1>
+    <p>Pick a future date • See days, months, years • Download or copy results</p>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+
+  <div class="container">
+    <div class="card input-card">
+      <div class="card-header"><i class="fas fa-calendar-alt"></i> Pick End Date</div>
+      <div class="card-body">
+        <label for="endDate">Choose a future date:</label>
+        <input type="date" id="endDate" />
+
+        <div class="button-group">
+          <button id="showFullDateBtn"><i class="fas fa-list-ul"></i> Full Dates</button>
+          <button id="showDaysBtn"><i class="fas fa-calendar-day"></i> Days</button>
+          <button id="showMonthsBtn"><i class="fas fa-calendar-week"></i> Months</button>
+          <button id="showYearsBtn"><i class="fas fa-calendar"></i> Years</button>
         </div>
 
-	<!-- Output Sections -->
-            <div class="output-section">
-                <div class="section">
-                    <h2>Full Date Output</h2>
-                    <div id="fullDateDisplay" class="output-display"></div>
-			
-                </div>
-
-                <div class="section">
-                    <h2>Days Output</h2>
-                    <div id="daysDisplay" class="output-display"></div>
-                </div>
-
-                <div class="section">
-                    <h2>Months Output</h2>
-                    <div id="monthsDisplay" class="output-display"></div>
-                </div>
-
-                <div class="section">
-                    <h2>Years Output</h2>
-                    <div id="yearsDisplay" class="output-display"></div>
-                </div>
-            </div>
-
-        <script src="script.js"></script>
-        <script src="downloadscript.js"></script>
+        <div class="download-group">
+          <button id="downloadFullDateBtn"><i class="fas fa-file-download"></i> Download Full</button>
+          <button id="downloadDaysBtn"><i class="fas fa-file-download"></i> Download Days</button>
+          <button id="downloadMonthsBtn"><i class="fas fa-file-download"></i> Download Months</button>
+          <button id="downloadYearsBtn"><i class="fas fa-file-download"></i> Download Years</button>
+        </div>
+      </div>
     </div>
-    <footer>
-        <div class="footer-container">
-	    <p>Made With ❤️ From <a href="https://discord.com/users/1032669135123001464">Adrix</a>.</p>
-            <p>&copy; 2024 VoxyB89. All rights reserved.</p>
-            <ul class="footer-links">
-                <li><a href="https://github.com/VoxyB89/VoxyB89">About Me</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="https://discord.gg/stellarfn">StellarFN Discord</a></li>
-            </ul>
-        </div>
-    </footer>
+
+    <!-- All outputs in one scrollable row -->
+    <div class="output-row">
+      <div class="output-card">
+        <h2>Full Dates</h2>
+        <div id="fullDateDisplay" class="output-display"></div>
+        <button class="copy-btn" onclick="copyToClipboard('fullDateDisplay')">Copy</button>
+      </div>
+      <div class="output-card">
+        <h2>Days Only</h2>
+        <div id="daysDisplay" class="output-display"></div>
+        <button class="copy-btn" onclick="copyToClipboard('daysDisplay')">Copy</button>
+      </div>
+      <div class="output-card">
+        <h2>Months</h2>
+        <div id="monthsDisplay" class="output-display"></div>
+        <button class="copy-btn" onclick="copyToClipboard('monthsDisplay')">Copy</button>
+      </div>
+      <div class="output-card">
+        <h2>Years</h2>
+        <div id="yearsDisplay" class="output-display"></div>
+        <button class="copy-btn" onclick="copyToClipboard('yearsDisplay')">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Warning Modal -->
+  <div class="modal" id="warningModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeWarning">×</span>
+      <h2>Quick Note</h2>
+      <p>This app works best with future dates — past dates will show an error.</p>
+      <p>Everything stays in your browser — no data is sent anywhere.</p>
+      <div class="dont-show">
+        <input type="checkbox" id="dontShowWarning">
+        <label for="dontShowWarning">Don't show again</label>
+      </div>
+      <button onclick="closeWarningModal()">Got it</button>
+    </div>
+  </div>
+
+  <!-- Tutorial Modal -->
+  <div class="modal" id="tutorialModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeTutorial">×</span>
+      <h2 style="color:#4a90e2;">Quick Start Guide</h2>
+      <ol>
+        <li>Pick any future date with the picker above.</li>
+        <li>Hit one of the "Show" buttons — results appear in the row below.</li>
+        <li>Scroll horizontally if needed (or vertically on phone).</li>
+        <li>Use "Download" buttons to save as .txt files.</li>
+        <li>Click "Copy" on any box to copy the text fast.</li>
+        <li>Switch light/dark mode with the icon in the header.</li>
+      </ol>
+      <div class="dont-show">
+        <input type="checkbox" id="dontShowTutorial">
+        <label for="dontShowTutorial">Don't show this again</label>
+      </div>
+      <button onclick="closeTutorialModal()">Got it</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made With ❤️ From Adrix.</p>
+    <p>© 2026 VoxyB89. All rights reserved.</p>
+    <p>Date Display App • Simple countdown tool •
+      <a href="https://github.com/VoxyB89/DateDisplayApp" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

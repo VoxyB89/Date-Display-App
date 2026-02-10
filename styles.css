@@ -1,123 +1,161 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --bg: #f8fbff;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --primary: #4a90e2;
+  --primary-dark: #357abd;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --shadow: 0 10px 25px rgba(0,0,0,0.06);
+  --transition: all 0.3s ease;
 }
 
-html, body {
-    height: 100%; /* Full height of the viewport */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e2e8f0;
+  --text-light: #94a3b8;
+  --primary: #60a5fa;
+  --primary-dark: #3b82f6;
+  --border: #334155;
+  --shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  min-height: 100vh;
+  transition: var(--transition);
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 89.8vh; /* Full height of the viewport */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem 3.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  animation: fadeInDown 0.8s ease-out;
 }
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 { margin: 0; font-size: 2.8rem; font-weight: 700; }
+header p { margin: 0.6rem 0 0; font-size: 1.15rem; opacity: 0.95; }
+
+.theme-toggle {
+  position: absolute; top: 1.2rem; right: 1.5rem;
+  background: rgba(255,255,255,0.2); border: none; color: white;
+  font-size: 1.4rem; padding: 0.6rem; border-radius: 50%; cursor: pointer;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
 
 .container {
-    max-width: 600px;
-    margin: 100px auto; /* Center horizontally and add 50px margin at the top */
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center children vertically */
+  max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.2rem;
 }
 
-.input-section {
-    margin-bottom: 20px; /* Space between input section and output sections */
+.card {
+  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
+  overflow: hidden; border: 1px solid var(--border); margin-bottom: 2.5rem;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.card-header {
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: white; padding: 1.3rem 1.6rem; font-size: 1.3rem; font-weight: 600;
+  display: flex; align-items: center; gap: 0.8rem;
 }
+
+.card-body { padding: 1.8rem; }
+
+label { display: block; margin: 0 0 0.6rem; font-weight: 500; color: var(--text-light); }
 
 input[type="date"] {
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%; padding: 0.9rem; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 1.05rem; background: var(--bg); color: var(--text);
 }
 
-.button-container {
- text-align: center; /* Center the buttons */
-    margin-bottom: 20px; /* Space between buttons and output sections */
+.button-group, .download-group {
+  display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.5rem 0;
 }
 
 button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 5px; /* Space between buttons */
+  background: var(--primary); color: white; border: none; padding: 0.9rem 1.6rem;
+  border-radius: 8px; font-size: 1.05rem; cursor: pointer; transition: var(--transition);
 }
 
-button:hover {
-    background-color: #0056b3;
+button:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+.output-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--border);
 }
 
-/* Flexbox for output sections */
-.output-section {
-    display: flex; /* Use flexbox for horizontal alignment */
-    justify-content: space-between; /* Distribute space between sections */
-    flex-wrap: wrap; /* Allow wrapping if there isn't enough space */
-    margin-top: 50px; /* Space above the output sections */
+.output-row::-webkit-scrollbar {
+  height: 10px;
 }
 
-.section {
-    flex: 1; /* Allow each section to grow */
-    margin: 10px; /* Space between sections */
-    padding: 15px;
-    border: 1px solid #ccc; /* Optional: adds a border around sections */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background for sections */
-    min-width: 150px; /* Minimum width for each section */
+.output-row::-webkit-scrollbar-track {
+  background: var(--border);
 }
 
-h2 {
-    margin: 0 0 10px 0; /* Space between section title and output */
+.output-row::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
 }
+
+.output-card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  flex: 0 0 320px; /* fixed width for horizontal scroll */
+  min-width: 320px;
+}
+
+.output-card h2 { margin: 0 0 1rem; font-size: 1.3rem; }
 
 .output-display {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #bbb; /* Optional: adds a border around output */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #ffffff; /* White background for output */
-    min-height: 50px; /* Minimum height for output display */
-    white-space: pre-wrap; /* Maintain line breaks */
+  max-height: 320px; /* adjust as you like */
+  overflow-y: auto;
+  padding: 1rem;
+  background: rgba(74,144,226,0.05);
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
 }
 
-/* Download button container styles */
-.download-button-container {
-    text-align: center; /* Center the download buttons */
-    margin-top: 20px; /* Space above the download buttons */
+.output-display::-webkit-scrollbar {
+  width: 6px;
 }
 
-.download-button-container button {
-    padding: 10px;
-    background-color: #28a745; /* Green color for download buttons */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 5px; /* Space between buttons */
+.output-display::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
 }
 
-.download-button-container button:hover {
-    background-color: #218838; /* Darker green on hover */
+.copy-btn {
+  margin-top: 0.8rem;
+  background: #6c757d;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
 }
+
+.copy-btn:hover { background: #5a6268; }
 
 footer {
     background-color: #007BFF; /* Change to your desired background color */
@@ -151,4 +189,54 @@ footer {
     text-decoration: underline; /* Underline on hover */
     color: red;
     font-weight: normal;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.modal.show { opacity: 1; visibility: visible; }
+
+.modal-content {
+  background: var(--card);
+  color: var(--text);
+  max-width: 480px;
+  width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  padding: 2rem;
+  position: relative;
+  animation: slideIn 0.4s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.modal-close:hover { color: var(--danger); transform: rotate(90deg); }
+
+.modal h2 {
+  margin: 0 0 1rem;
+  color: var(--danger);
+  font-size: 1.5rem;
+}
+
+.modal ul {
+  padding-left: 1.4rem;
+  margin: 1rem 0;
 }
