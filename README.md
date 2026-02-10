@@ -3,7 +3,7 @@
 Simple web tool to count days, months, years from today until any future date.  
 Show results on screen or download them as text files.
 
-Live: https://voxyb89.github.io/DateDisplayApp/
+Live: https://voxyb89.github.io/Date-Display-App/
 
 ### Features
 - Pick a date → see full calendar dates, just days, months, or years
